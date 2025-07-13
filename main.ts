@@ -1,29 +1,26 @@
-input.onButtonPressed(Button.A, function () {
-    // add code
-})
-input.onButtonPressed(Button.B, function () {
-    // add code
-})
-input.onButtonPressed(Button.AB, function () {
-    // add code
-})
-
-
-/*
-The code below is taken from an Elecfreaks library:
-The CutebotPro code is copied from the ElecFreaks 'main.ts' library:
-https://github.com/elecfreaks/pxt-Cutebot-Pro/blob/master/main.ts
-(MIT-license)
-*/
-
-/*
-The code below is taken from an Elecfreaks library:
-The CutebotPro code is copied from the ElecFreaks 'v2.ts' library:
-https://github.com/elecfreaks/pxt-Cutebot-Pro/blob/master/v2.ts
-(MIT-license)
-*/
-
 namespace CSoccer {
+
+    //////////////////////
+    // Playing progress //
+    //////////////////////
+
+    let PLAYING = false
+
+    export function startPlaying() {
+        PLAYING = true
+    }
+
+    export function stopPlaying() {
+        PLAYING = false
+    }
+
+    export function isPlaying() : boolean {
+        return PLAYING
+    }
+
+    /////////////////
+    // Radio group //
+    /////////////////
 
     export enum Group {
         //% block="group 1"
@@ -55,25 +52,40 @@ namespace CSoccer {
         Group9
     }
 
-    let GROUP = Group.Group1
+    let GROUP = 1
 
-    //% block="join %group"
-    //% block.loc.nl="sluit aan bij %group"
-    export function setGroup(group: Group) {
-        GROUP = group + 1
+    input.onLogoEvent(TouchButtonEvent.Pressed, function () {
+        GROUP++
+        if (GROUP > 9) GROUP = 1
         radio.setGroup(GROUP)
+        basic.showNumber(GROUP)
+        basic.pause(1000)
+        display() // must be defined in the main program
+    })
+
+    ////////////////////////////
+    // Communication commands //
+    ////////////////////////////
+
+    export enum COMMAND {
+        Start,
+        Stop,
+        GoalGreen,
+        GoalRed,
+        ObstructGreen,
+        ObstructRed,
+        DisqualGreen,
+        DisqualRed,
+        HalfTime,
+        WinnerGreen,
+        WinnerRed
     }
 
-}
+    radio.onReceivedNumber(function (cmd: number) {
 
-//% color="#00CC00" icon="\uf1f9"
-//% block="Soccer"
-//% block.loc.nl="Voetbal"
-namespace CPlayer {
+        if (cmd == COMMAND.Start) PLAYING = true
+        if (cmd == COMMAND.Stop) PLAYING = false
 
-    //% block="strategy"
-    //% block.loc.nl="strategie"
-    export function setStrategy() {
-    }
-
+        handle(cmd) // must be defined in the main program
+    })
 }
