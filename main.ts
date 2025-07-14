@@ -76,9 +76,7 @@ namespace CSoccer {
         ObstructRed,
         DisqualGreen,
         DisqualRed,
-        HalfTime,
-        WinnerGreen,
-        WinnerRed
+        Reset
     }
 
     radio.onReceivedNumber(function (cmd: number) {
