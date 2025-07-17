@@ -1,3 +1,6 @@
+//% color="#00CC00" icon="\uf1f9"
+//% block="Robot soccer"
+//% block.loc.nl="Robotvoetbal"
 namespace CSoccer {
 
     //////////////////////
