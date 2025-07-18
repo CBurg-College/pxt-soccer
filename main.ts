@@ -77,6 +77,8 @@ namespace CSoccer {
         GoalRed,
         ObstructGreen,
         ObstructRed,
+        WinnerGreen,
+        WinnerRed,
         DisqualGreen,
         DisqualRed,
         Reset
