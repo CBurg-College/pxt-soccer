@@ -3,24 +3,6 @@
 //% block.loc.nl="Robotvoetbal"
 namespace CSoccer {
 
-    //////////////////////
-    // Playing progress //
-    //////////////////////
-
-    let PLAYING = false
-
-    export function startPlaying() {
-        PLAYING = true
-    }
-
-    export function stopPlaying() {
-        PLAYING = false
-    }
-
-    export function isPlaying() : boolean {
-        return PLAYING
-    }
-
     /////////////////
     // Radio group //
     /////////////////
@@ -85,10 +67,6 @@ namespace CSoccer {
     }
 
     radio.onReceivedNumber(function (cmd: number) {
-
-        if (cmd == COMMAND.Start) PLAYING = true
-        if (cmd == COMMAND.Stop) PLAYING = false
-
         handle(cmd) // must be defined in the main program
     })
 }
