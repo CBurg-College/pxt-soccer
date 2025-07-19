@@ -56,13 +56,13 @@ namespace CSoccer {
         Start,
         Stop,
         GoalGreen,
-        GoalRed,
+        GoalBlue,
         ObstructGreen,
-        ObstructRed,
+        ObstructBlue,
         WinnerGreen,
-        WinnerRed,
+        WinnerBlue,
         DisqualGreen,
-        DisqualRed,
+        DisqualBlue,
         Reset
     }
 
